@@ -1,0 +1,21 @@
+{
+  "name": "swob",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "swob": "./index.js"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "camelcase": "^6.2.0",
+    "chalk": "^4.1.1",
+    "progress": "^2.0.3"
+  }
+}
