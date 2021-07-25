@@ -3,11 +3,11 @@
 ### Set-Up
 Clone project
 ```
-git clone git@github.com:smswithoutborders/SMSwithoutborders_Dev_Tools.git
+git clone git@github.com:smswithoutborders/SWOB-CLI.git
 ```
 Move into the SWOB-CLI direcotry
 ```
-cd SMSwithoutborders_Dev_Tools/SWOB_API_Tools/SWOB-CLI/
+cd SWOB-CLI/
 ```
 ### Installation
 install dependencies
