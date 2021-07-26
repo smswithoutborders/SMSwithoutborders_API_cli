@@ -127,7 +127,7 @@ module.exports =
             })
         };
 
-        const url = `https://raw.githubusercontent.com/smswithoutborders/SMSwithoutborders_Dev_Tools/master/SWOB_API_Tools/Downloads/${camelCase(input[1], {pascalCase: true})}/${camelCase(input[2], {pascalCase: true})}.js`;
+        const url = `https://raw.githubusercontent.com/smswithoutborders/Downloads/master/${camelCase(input[1], {pascalCase: true})}/${camelCase(input[2], {pascalCase: true})}.js`;
         const to = 8000
 
         async function download(url, provider, platform) {
