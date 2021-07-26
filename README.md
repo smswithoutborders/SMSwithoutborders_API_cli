@@ -26,7 +26,7 @@ swob --version
 ```
 ### Uninstall SWOB-CLI
 ```
-sudo rm swob -g
+sudo npm rm swob -g
 ```
 ### Commands
 NB: All commands should be executed in the root directory of a SWOB project only for desired results
