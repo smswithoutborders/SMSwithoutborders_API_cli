@@ -5,6 +5,11 @@ const {
 } = require('commander');
 const program = new Command();
 var inquirer = require('inquirer');
+const fs = require("fs");
+const camelCase = require('camelcase');
+const chalk = require('chalk');
+const Axios = require('axios');
+const ProgressBar = require('progress');
 
 program
     .action(async () => {
@@ -84,8 +89,81 @@ program
                 }
             });
 
-        console.log(provider, platform, provider_desc, platform_desc, platform_type)
+        if (!platform) {
+            if (!fs.existsSync(`${process.cwd()}/Providers/${camelCase(provider, {pascalCase: true})}`)) {
+                fs.mkdirSync(`${process.cwd()}/Providers/${camelCase(provider, {pascalCase: true})}`, {
+                    recursive: true
+                })
 
+                fs.appendFileSync(`${process.cwd()}/Providers/${camelCase(provider, {pascalCase: true})}/info.json`,
+                    `
+{
+    "name":"${provider}",
+    "description":"${provider_desc}",
+    "platforms":[]
+}
+                `
+                )
+
+                console.log(chalk.white.bgGreen(`swob <provider>: ${camelCase(provider, {pascalCase: true})} created successfully!`))
+            } else {
+                return console.log(chalk.white.bgRed(`swob: Cannot create Provider '${camelCase(provider, {pascalCase: true})}': Provider exist already!`))
+            }
+        };
+
+        if (!fs.existsSync(`${process.cwd()}/Providers/${camelCase(provider, {pascalCase: true})}/${camelCase(platform, {pascalCase: true})}.js`)) {
+
+            if (!fs.existsSync(`${process.cwd()}/Providers/${camelCase(provider, {pascalCase: true})}`)) {
+                fs.mkdirSync(`${process.cwd()}/Providers/${camelCase(provider, {pascalCase: true})}`, {
+                    recursive: true
+                })
+
+                fs.appendFileSync(`${process.cwd()}/Providers/${camelCase(provider, {pascalCase: true})}/info.json`,
+                    `
+{
+    "name":"${provider}",
+    "description":"${provider_desc}",
+    "platforms":[]
+}
+                `
+                )
+            };
+
+            fs.appendFileSync(`${process.cwd()}/Providers/${camelCase(provider, {pascalCase: true})}/${camelCase(platform, {pascalCase: true})}.js`,
+                `const Factory = //require("...");
+                        
+module.exports =
+                
+    class ${camelCase(platform, {pascalCase: true})} extends Factory {
+        init() {
+            return;
+        };
+        
+        validate() {
+            return;
+        };
+        
+        revoke() {
+            return;
+        }
+    }`
+            )
+
+            let data = fs.readFileSync(`${process.cwd()}/Providers/${camelCase(provider, {pascalCase: true})}/info.json`, 'utf8')
+
+            info = JSON.parse(data);
+            info.platforms.push({
+                name: `${platform}`,
+                description: `${platform_desc}`,
+                type: `${platform_type}`
+            });
+            json = JSON.stringify(info);
+            fs.writeFileSync(`${process.cwd()}/Providers/${camelCase(provider, {pascalCase: true})}/info.json`, json, 'utf8');
+
+            console.log(chalk.white.bgGreen(`swob <platform>: ${camelCase(provider, {pascalCase: true})} ${camelCase(platform, {pascalCase: true})} created successfully!`))
+        } else {
+            return console.log(chalk.white.bgRed(`swob: Cannot create Platform '${camelCase(platform, {pascalCase: true})}': Platform exist already!`))
+        }
     });
 
 program.addHelpText('after', `
