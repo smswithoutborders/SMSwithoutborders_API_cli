@@ -7,7 +7,7 @@ const program = new Command();
 var inquirer = require('inquirer');
 
 program
-    .action(() => {
+    .action(async () => {
         let provider = '';
         let platform = '';
         let provider_desc = '';
@@ -56,7 +56,7 @@ program
             }
         ]
 
-        inquirer.prompt(quetions)
+        await inquirer.prompt(quetions)
             .then(async (answers) => {
                 provider = answers.provider;
                 platform = answers.platform;
@@ -74,8 +74,7 @@ program
                             platform_type = answer.other_type;
                             return
                         })
-                }
-                console.log(provider, platform, provider_desc, platform_desc, platform_type)
+                };
             })
             .catch((error) => {
                 if (error.isTtyError) {
@@ -84,6 +83,9 @@ program
                     console.log(error)
                 }
             });
+
+        console.log(provider, platform, provider_desc, platform_desc, platform_type)
+
     });
 
 program.addHelpText('after', `
