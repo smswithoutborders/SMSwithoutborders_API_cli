@@ -8,7 +8,8 @@ const program = new Command();
 program.version('0.0.1', '-v, --vers', 'output the current version');
 
 program
-    .command('create', "Creates a new Provider/Platform with empty template")
+    .command('create', "Create a new Provider/Platform with empty template")
+    .command('delete', "Delete Provider/Platform")
 
 program.showHelpAfterError();
 program.parse();

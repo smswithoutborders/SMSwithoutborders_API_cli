@@ -8,8 +8,6 @@ var inquirer = require('inquirer');
 const fs = require("fs");
 const camelCase = require('camelcase');
 const chalk = require('chalk');
-const Axios = require('axios');
-const ProgressBar = require('progress');
 
 program
     .action(async () => {
