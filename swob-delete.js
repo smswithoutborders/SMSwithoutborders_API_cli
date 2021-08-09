@@ -106,7 +106,7 @@ program
 
 program.addHelpText('after', `
 Examples:
-  $ swob create
+  $ swob delete
 `);
 
 program.showHelpAfterError();
