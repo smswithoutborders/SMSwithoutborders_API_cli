@@ -81,7 +81,7 @@ program
             })
             .catch((error) => {
                 if (error.isTtyError) {
-                    console.log("couldn't be rendered in the current environment")
+                    return console.log("couldn't be rendered in the current environment")
                 } else {
                     console.log(error)
                 }
@@ -103,7 +103,7 @@ program
                 `
                 )
 
-                console.log(chalk.white.bgGreen(`swob <provider>: ${camelCase(provider, {pascalCase: true})} created successfully!`))
+                return console.log(chalk.white.bgGreen(`swob <provider>: ${camelCase(provider, {pascalCase: true})} created successfully!`))
             } else {
                 return console.log(chalk.white.bgRed(`swob: Cannot create Provider '${camelCase(provider, {pascalCase: true})}': Provider exist already!`))
             }
@@ -158,7 +158,7 @@ module.exports =
             json = JSON.stringify(info);
             fs.writeFileSync(`${process.cwd()}/Providers/${camelCase(provider, {pascalCase: true})}/info.json`, json, 'utf8');
 
-            console.log(chalk.white.bgGreen(`swob <platform>: ${camelCase(provider, {pascalCase: true})} ${camelCase(platform, {pascalCase: true})} created successfully!`))
+            return console.log(chalk.white.bgGreen(`swob <platform>: ${camelCase(provider, {pascalCase: true})} ${camelCase(platform, {pascalCase: true})} created successfully!`))
         } else {
             return console.log(chalk.white.bgRed(`swob: Cannot create Platform '${camelCase(platform, {pascalCase: true})}': Platform exist already!`))
         }
