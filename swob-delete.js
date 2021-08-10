@@ -22,11 +22,10 @@ program
                 let warning = chalk.keyword('orange')
                 console.log(warning("WARNING: No providers found, use SWOB-CLI to create a provider"));
                 console.log(warning("Follow the link below to setup SWOB-CLI:"));
-                console.log(chalk.blue("https://github.com/smswithoutborders/SWOB-CLI"));
+                console.log(chalk.blue("https://github.com/smswithoutborders/SMSwithoutborders_API_cli"));
                 return
             }
 
-            //listing all files using forEach
             providers.forEach(function (provider) {
                 let data = fs.readFileSync(`${process.cwd()}/Providers/${camelCase(provider, {pascalCase: true})}/info.json`, 'utf8');
                 let info = JSON.parse(data);
@@ -37,11 +36,10 @@ program
                 };
             });
 
-
             let quetions = [{
                 type: "list",
                 name: "available",
-                message: "Platform's type (*):",
+                message: "Select Provider/Platform to be deleted (*):",
                 choices: avail
             }]
 
@@ -97,9 +95,9 @@ program
             }
         } else {
             let warning = chalk.keyword('orange')
-            console.log(warning("WARNING: No providers found, use SWOB-CLI to create a provider"));
-            console.log(warning("Follow the link below to setup SWOB-CLI:"));
-            console.log(chalk.blue("https://github.com/smswithoutborders/SWOB-CLI"));
+            console.log(warning(`WARNING: No providers information found for, use SWOB-CLI to create/install a provider\n`));
+            console.log("For help use:\n");
+            console.log("swob --help");
             return;
         }
     });

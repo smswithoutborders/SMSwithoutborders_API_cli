@@ -32,15 +32,15 @@ program
             {
                 type: "input",
                 name: "platform",
-                message: "Platform's name (*):",
-                validate: function (input) {
-                    let done = this.async();
-                    if (!input) {
-                        done("Platform's name cannot be empty");
-                        return
-                    };
-                    done(null, true);
-                }
+                message: "Platform's name (optional):",
+                // validate: function (input) {
+                //     let done = this.async();
+                //     if (!input) {
+                //         done("Platform's name cannot be empty");
+                //         return
+                //     };
+                //     done(null, true);
+                // }
             }, {
                 type: "input",
                 name: "pr_desc",
