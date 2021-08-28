@@ -31,16 +31,17 @@ sudo npm rm swob -g
 ### Commands
 NB: All commands should be executed in the root directory of a SWOB project only for desired results
 ```
-Usage:
+Usage: swob [options] [command]
 
-<> = required
-[] = optional
+Options:
+  -v, --vers      output the current version
+  -h, --help      display help for command
 
-swob c, create <provider> [platform]    Create a new Provider
-swob d, delete <provider> [platform]    Delete a Provider
-swob i, install <provider> <platform>   Download a Provider
-swob -v, --version                      Show version
-swob help                               Help
+Commands:
+  create          Create a new Provider/Platform with empty template
+  delete          Delete Provider/Platform
+  install         Download Provider/Platform from github
+  help [command]  display help for command
 
 NB: Please run these commands in the root directory of your SWOB project only
 ```
